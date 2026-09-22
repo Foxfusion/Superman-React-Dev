@@ -70,7 +70,7 @@ export default function ScrapePage() {
             const { data } = await api.get("/scrape/jobs", { params });
             setJobs(data);
         } catch (e) {
-            notify(e?.response?.data?.error || "Failed to load jobs", "bad");
+            notify((e && e.response && e.response.data && e.response.data.error) || "Failed to load jobs", "bad");
         } finally {
             setLoadingJobs(false);
         }
@@ -89,7 +89,7 @@ export default function ScrapePage() {
             setTarget("");
             fetchJobs();
         } catch (e) {
-            notify(e?.response?.data?.error || "Failed to create job", "bad");
+            notify((e && e.response && e.response.data && e.response.data.error) || "Failed to create job", "bad");
         }
     };
 
@@ -138,7 +138,7 @@ export default function ScrapePage() {
             notify("Throttles updated ✅", "ok");
             setShowThrottles(false);
         } catch (e) {
-            notify(e?.response?.data?.error || "Failed to save throttles", "bad");
+            notify((e && e.response && e.response.data && e.response.data.error) || "Failed to save throttles", "bad");
         } finally {
             setSavingThrottles(false);
         }
